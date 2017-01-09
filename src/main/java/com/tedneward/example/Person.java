@@ -22,7 +22,7 @@ public class Person implements Comparable<Person> {
     ssn = "";
     count++;
   }
-
+  // this method sets age
   public void setAge(int age) {
     if (age < 0) {
       throw new IllegalArgumentException();
@@ -30,6 +30,7 @@ public class Person implements Comparable<Person> {
     this.age = age;
   }
 
+  // this method sets name
   public void setName(String name) {
     if (name == null) {
       throw new IllegalArgumentException();
@@ -37,38 +38,40 @@ public class Person implements Comparable<Person> {
     this.name = name;
   }
 
+  // this method sets salary
   public void setSalary(double salary) {
     this.salary = salary;
   }
 
-//  public void setSsn(String ssn) {
-//    this.ssn = ssn;
-//  }
-
+  // this method sets SSN
   public void setSSN(String value) {
     String old = ssn;
     ssn = value;
-
     this.pcs.firePropertyChange("ssn", old, value);
     propertyChangeFired = true;
   }
 
+  // this method get count
   public int getCount() {
     return count;
   }
 
+  // this method get age
   public int getAge() {
     return age;
   }
 
+  // this method gets name
   public String getName() {
     return name;
   }
 
+  // this method gets salary
   public double getSalary() {
     return salary;
   }
 
+  // this method gets SSN
   public String getSSN() {
     return ssn;
   }
@@ -102,31 +105,36 @@ public class Person implements Comparable<Person> {
     return age + 10;
   }
 
+  // Created a comparison to check the whether both ages are the same
   @Override
   public boolean equals(Object other) {
     if (other instanceof Person) {
-      Person p = (Person)other;
-      return (this.name.equals(p.name) && this.age == p.age);
+      Person another = (Person)other;
+      return (this.name.equals(another.name) && this.age == another.age);
     }
     return false;
   }
 
+  // Create a new toString method
   @Override
   public String toString() {
     return "[Person name:" + name + " age:" + age + " salary:" + salary + "]";
   }
 
+  // This comparaTo method is able to compare the salary of two different person
   @Override
   public int compareTo(Person other) {
     return  (int) (other.getSalary() - this.getSalary());
   }
 
+  // This class is able to compare the age of two different person
   public static class AgeComparator implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
       return p1.age - p2.age;
     }
   }
 
+  // this method consistis of four Person objects
   public static ArrayList<Person> getNewardFamily() {
     ArrayList<Person> list = new ArrayList<Person>();
     Person ted = new Person("Ted", 41, 250000);
